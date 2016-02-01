@@ -29,8 +29,7 @@ module Prawn
         emoji_x, emoji_y = text_options[:at]
         emoji_x += @document.width_of(left_text, text_options)
         emoji_y += @document.font_size
-
-        draw_emoji_image emoji_image, at: [emoji_x, emoji_y], width: @document.font_size
+        draw_emoji_image emoji_image, at: [emoji_x, emoji_y - 2.pt], width: @document.font_size
 
         substitution_of_emoji = Substitution.new(@document)
         draw_emoji "#{left_text}#{substitution_of_emoji}#{remaining_text}", text_options
