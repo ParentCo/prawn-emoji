@@ -22,7 +22,13 @@ module Prawn
       private
 
       def codepoint
-        @codepoint ||= @unicode.codepoints.map { |c| '%04x' % c.to_s }.join.upcase
+        @codepoint ||= @unicode.codepoints.map { |c| format_codepoint(c) }.join.upcase
+      end
+
+      def format_codepoint(codepoint)
+        codepoint = codepoint.to_s(16)
+        codepoint = "00#{codepoint}" if codepoint.size == 2
+        codepoint
       end
     end
   end
